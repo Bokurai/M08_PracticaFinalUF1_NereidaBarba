@@ -2,18 +2,45 @@ package com.example.m08_practicafinaluf1_nereidabarba;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
-import androidx.room.DatabaseConfiguration;
-import androidx.room.InvalidationTracker;
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Database;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
+import androidx.room.Update;
 
+import java.util.List;
+
+
+@Database(entities = { Habit.class }, version = 2, exportSchema = false)
 public abstract class HabitsDatabase extends RoomDatabase {
+
+
+    public abstract HabitDao habitDao();
 
     private static volatile HabitsDatabase INSDB;
 
-    static HabitsDatabase obtenerInstancia(final Context context) {
+
+    @Dao
+    public interface HabitDao {
+        @Query("SELECT * FROM habit")
+        LiveData<List<Habit>> obtener();
+
+        @Insert
+        void insertar(Habit habit);
+
+        @Update
+        void actualizar(Habit habit);
+
+        @Delete
+        void eliminar(Habit habit);
+
+    }
+
+    public static synchronized HabitsDatabase obtenerInstancia(final Context context) {
         if (INSDB == null) {
             synchronized (HabitsDatabase.class) {
                 if (INSDB == null) {
@@ -27,22 +54,6 @@ public abstract class HabitsDatabase extends RoomDatabase {
         return INSDB;
     }
 
-    @Override
-    public void clearAllTables() {
-
-    }
-
-    @NonNull
-    @Override
-    protected InvalidationTracker createInvalidationTracker() {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    protected SupportSQLiteOpenHelper createOpenHelper(@NonNull DatabaseConfiguration databaseConfiguration) {
-        return null;
-    }
 }
 
 
