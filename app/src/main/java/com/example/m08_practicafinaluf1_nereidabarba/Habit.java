@@ -48,4 +48,7 @@ public class Habit {
         this.startDate = startDate;
     }
 
+    public Habit(String title) {
+        this.title = title;
+    }
 }
