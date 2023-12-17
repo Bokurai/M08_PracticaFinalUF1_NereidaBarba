@@ -76,10 +76,8 @@ public class HabitsFragment extends Fragment {
             return new HabitViewHolder(ViewholderHabitBinding.inflate(getLayoutInflater(), parent, false));
         }
 
-            @Override
-            public void onBindViewHolder(@NonNull HabitViewHolder holder, int position) {
-                Habit habit = hbList.get(position);
-                holder.bind(habit);
-            }
+
+        public void setHBList(List<Habit> habits) {
         }
+    }
     }

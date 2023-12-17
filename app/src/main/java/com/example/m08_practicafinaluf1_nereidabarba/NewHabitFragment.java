@@ -42,7 +42,6 @@ public class NewHabitFragment extends Fragment {
 
             Habit newHabit = new Habit(nameHabit);
 
-            // Agrega el nuevo hábito al ViewModel
             HabitsViewModel habitsViewModel = new ViewModelProvider(requireActivity()).get(HabitsViewModel.class);
             habitsViewModel.insertar(newHabit);
 
