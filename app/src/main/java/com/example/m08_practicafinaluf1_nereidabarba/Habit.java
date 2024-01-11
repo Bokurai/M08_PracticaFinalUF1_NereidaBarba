@@ -2,6 +2,7 @@ package com.example.m08_practicafinaluf1_nereidabarba;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import java.time.LocalDate;
 
@@ -32,9 +33,24 @@ public class Habit {
         return frequency;
     }
 
-
     public boolean isChecked() {
         return checked;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
     public void setChecked(boolean checked) {
@@ -48,6 +64,7 @@ public class Habit {
         this.startDate = startDate;
     }
 
+    @Ignore
     public Habit(String title) {
         this.title = title;
     }

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.m08_practicafinaluf1_nereidabarba"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -28,7 +28,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true;
+        viewBinding = true
     }
 }
 

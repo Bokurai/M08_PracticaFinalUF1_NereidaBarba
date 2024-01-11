@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import com.example.m08_practicafinaluf1_nereidabarba.databinding.FragmentHabitsBinding;
 import com.example.m08_practicafinaluf1_nereidabarba.databinding.ViewholderHabitBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -67,8 +68,8 @@ public class HabitsFragment extends Fragment {
     class HabitsAdapter extends RecyclerView.Adapter<HabitViewHolder> {
         private List<Habit> hbList;
 
-        public HabitsAdapter(List<Habit> habitsList) {
-            this.hbList = habitsList;
+        public HabitsAdapter() {
+            this.hbList = new ArrayList<>();
         }
         @NonNull
         @Override
@@ -76,8 +77,19 @@ public class HabitsFragment extends Fragment {
             return new HabitViewHolder(ViewholderHabitBinding.inflate(getLayoutInflater(), parent, false));
         }
 
+        @Override
+        public void onBindViewHolder(@NonNull HabitViewHolder viewHolder, int position){
+          
+        }
+
+        @Override
+        public int getItemCount(){
+            return hbList.size();
+        }
 
         public void setHBList(List<Habit> habits) {
+            this.hbList = habits;
+            notifyDataSetChanged();
         }
     }
     }
