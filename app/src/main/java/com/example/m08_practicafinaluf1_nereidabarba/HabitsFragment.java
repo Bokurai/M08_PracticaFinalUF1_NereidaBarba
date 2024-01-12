@@ -23,7 +23,6 @@ import com.example.m08_practicafinaluf1_nereidabarba.databinding.ViewholderHabit
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class HabitsFragment extends Fragment {
 
     private FragmentHabitsBinding binding;
@@ -50,13 +49,13 @@ public class HabitsFragment extends Fragment {
 
         habitsAdapter = new HabitsAdapter();
         recyclerView.setAdapter(habitsAdapter);
-
         binding.addHabit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_habitsFragment_to_newHabitFragment);
             }
         });
+
 
         habitsViewModel.obtener().observe(getViewLifecycleOwner(), new Observer<List<Habit>>() {
             @Override
@@ -81,18 +80,33 @@ public class HabitsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull HabitViewHolder viewHolder, int position){
-          
+          Habit habit = hbList.get(position);
+
+          viewHolder.binding.weekdayViewholder.setText(habit.title);
+
+          viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  habitsViewModel.select(habit);
+                  navController.navigate(R.id.action_habitsFragment_to_showHabitFragment);
+              }
+          });
         }
 
         @Override
         public int getItemCount(){
-            return hbList.size();
+            return hbList != null ? hbList.size() : 0;
         }
 
         public void setHBList(List<Habit> habits) {
             this.hbList = habits;
             notifyDataSetChanged();
         }
+
+        public Habit obtenerHabits(int position){
+            return hbList.get(position);
+        }
+
     }
 
     static class HabitViewHolder extends RecyclerView.ViewHolder{

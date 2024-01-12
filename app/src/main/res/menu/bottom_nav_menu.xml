@@ -10,8 +10,4 @@
         android:icon="@drawable/habits"
         android:title="Habits" />
 
-    <item
-        android:id="@+id/toDoListFragment"
-        android:icon="@drawable/to_do"
-        android:title="To-Do" />
 </menu>

@@ -16,7 +16,7 @@ import androidx.room.Update;
 import java.util.List;
 
 
-@Database(entities = { Habit.class }, version = 1, exportSchema = false)
+@Database(entities = { Habit.class }, version = 2)
 @TypeConverters(ConversorLocalDate.class)
 public abstract class HabitsDatabase extends RoomDatabase {
 

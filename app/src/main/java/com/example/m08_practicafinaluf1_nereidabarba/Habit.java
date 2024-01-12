@@ -10,13 +10,16 @@ import java.time.LocalDate;
 public class Habit {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    private String title;
-    private int frequency;
+    int id;
+    String title;
+    int frequency;
     @ColumnInfo(name = "start_date")
-    private LocalDate startDate;
+    LocalDate startDate;
     @ColumnInfo(name = "checked")
-    private boolean checked;
+    boolean checked;
+
+    @ColumnInfo(name = "days_of_week")
+    int daysOfWeek;
 
     public int getId() {
         return id;
@@ -57,6 +60,21 @@ public class Habit {
         this.checked = checked;
     }
 
+    public void setDaysOfWeek(int daysOfWeek) {
+        this.daysOfWeek = daysOfWeek;
+    }
+
+    public boolean isDaySelected(int day) {
+        return ((daysOfWeek >> day) & 1) == 1;
+    }
+
+    public void setDaySelected(int day, boolean selected) {
+        if (selected) {
+            daysOfWeek |= (1 << day);
+        } else {
+            daysOfWeek &= ~(1 << day);
+        }
+    }
     public Habit(int id, String title, int frequency, LocalDate startDate) {
         this.id = id;
         this.title = title;

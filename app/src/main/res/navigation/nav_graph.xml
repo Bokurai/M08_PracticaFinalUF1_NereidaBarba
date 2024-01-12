@@ -38,5 +38,10 @@
         android:id="@+id/newHabitFragment"
         android:name="com.example.m08_practicafinaluf1_nereidabarba.NewHabitFragment"
         android:label="fragment_new_habit"
-        tools:layout="@layout/fragment_new_habit" />
+        tools:layout="@layout/fragment_new_habit" >
+        <action
+            android:id="@+id/action_newHabitFragment_to_habitsFragment"
+            app:destination="@id/habitsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
 </navigation>
