@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +29,7 @@ public class HabitsFragment extends Fragment {
     private FragmentHabitsBinding binding;
     private HabitsViewModel habitsViewModel;
     private HabitsAdapter habitsAdapter;
+    private NavController navController;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -40,12 +43,20 @@ public class HabitsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         habitsViewModel = new ViewModelProvider(this).get(HabitsViewModel.class);
+        navController = Navigation.findNavController(view);
 
         RecyclerView recyclerView = binding.habitRV;
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         habitsAdapter = new HabitsAdapter();
         recyclerView.setAdapter(habitsAdapter);
+
+        binding.addHabit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_habitsFragment_to_newHabitFragment);
+            }
+        });
 
         habitsViewModel.obtener().observe(getViewLifecycleOwner(), new Observer<List<Habit>>() {
             @Override
@@ -55,22 +66,13 @@ public class HabitsFragment extends Fragment {
         });
     }
 
-    class HabitViewHolder extends RecyclerView.ViewHolder{
-        private final ViewholderHabitBinding binding;
-
-        public HabitViewHolder(ViewholderHabitBinding binding){
-            super(binding.getRoot());
-            this.binding = binding;
-        }
-
-    }
-
     class HabitsAdapter extends RecyclerView.Adapter<HabitViewHolder> {
         private List<Habit> hbList;
 
         public HabitsAdapter() {
             this.hbList = new ArrayList<>();
         }
+
         @NonNull
         @Override
         public HabitViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -91,5 +93,15 @@ public class HabitsFragment extends Fragment {
             this.hbList = habits;
             notifyDataSetChanged();
         }
+    }
+
+    static class HabitViewHolder extends RecyclerView.ViewHolder{
+        private final ViewholderHabitBinding binding;
+
+        public HabitViewHolder(ViewholderHabitBinding binding){
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
     }
     }

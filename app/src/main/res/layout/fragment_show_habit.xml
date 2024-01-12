@@ -1,6 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ShowHabitFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/titleshowhabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Habit Title"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:background="#f09c9c"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+
+    <CheckBox
+        android:id="@+id/mondayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monday"
+        android:layout_below="@id/titleshowhabit"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <CheckBox
+        android:id="@+id/tuesdayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tuesday"
+        android:layout_below="@id/mondayCheckBox"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <CheckBox
+        android:id="@+id/wednesdayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wednesday"
+        android:layout_below="@id/tuesdayCheckBox"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <CheckBox
+        android:id="@+id/thursdayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thursday"
+        android:layout_below="@id/wednesdayCheckBox"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <CheckBox
+        android:id="@+id/fridayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Friday"
+        android:layout_below="@id/thursdayCheckBox"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <CheckBox
+        android:id="@+id/saturdayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saturday"
+        android:layout_below="@id/fridayCheckBox"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <CheckBox
+        android:id="@+id/sundayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sunday"
+        android:layout_below="@id/saturdayCheckBox"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+</RelativeLayout>
